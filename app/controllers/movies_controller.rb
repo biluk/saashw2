@@ -7,14 +7,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-     @rating = params[:rating]
+     @hilite_title=nil
+     @hilite_release_date=nil
      @order = params[:order] 
-     if@order.to_s == 'title'
-         @hilite_title = '.hilite'
-         else if @order.to_s == 'release_date'
-           @hilite_release_date_hilite = '.hilite'
-           end
-     @movies = Movie.find(:all, :order => @order)
+     if @order.to_s == 'title'
+         @hilite_title = 'hilite'
+         elsif @order.to_s == 'release_date'
+             @hilite_release_date = 'hilite'
+         end
+      @movies = Movie.find(:all, :order => @order)
      @all_ratings = Movie.find(:all, :select => 'rating').map(&:rating).uniq
 
   end
