@@ -7,7 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+     @rating = params[:rating]
+     @order = params[:order] 
+     @movies = Movie.find(:all, :order => @order)
+     @all_ratings = Movie.find(:all, :select => 'rating').map(&:rating).uniq
+
   end
 
   def new
