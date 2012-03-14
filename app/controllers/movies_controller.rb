@@ -11,7 +11,7 @@ def initialize
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
-
+  
   def index
     redirect = false
     if params["sort_by"]
@@ -44,15 +44,15 @@ def initialize
 
     @movies = []
 
-
+   
     all_movies.each do |movie|
       if @ratings.keys.include?(movie["rating"])
         @movies << movie
       end
     end
 
-    flash[:sort_by] = @sort_by
-    flash[:ratings] = @ratings
+   # flash[:sort_by] = @sort_by
+   # flash[:ratings] = @ratings
     session[:sort_by] = @sort_by
     session[:ratings] = @ratings
     
